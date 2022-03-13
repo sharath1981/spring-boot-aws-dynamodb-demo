@@ -1,9 +1,11 @@
 package com.ryana.repository;
 
 import java.util.HashMap;
+import java.util.List;
 
 import com.amazonaws.services.dynamodbv2.datamodeling.DynamoDBMapper;
 import com.amazonaws.services.dynamodbv2.datamodeling.DynamoDBSaveExpression;
+import com.amazonaws.services.dynamodbv2.datamodeling.DynamoDBScanExpression;
 import com.amazonaws.services.dynamodbv2.model.AttributeValue;
 import com.amazonaws.services.dynamodbv2.model.ExpectedAttributeValue;
 import com.ryana.domain.Person;
@@ -22,6 +24,10 @@ public class PersonRepository {
     public Person save(final Person person) {
         mapper.save(person);
         return person;
+    }
+
+    public List<Person> findAll() {
+        return mapper.scan(Person.class, new DynamoDBScanExpression());
     }
 
     public Person findByPersonId(final String personId) {

@@ -1,5 +1,7 @@
 package com.ryana.controller;
 
+import java.util.List;
+
 import com.ryana.domain.Person;
 import com.ryana.repository.PersonRepository;
 
@@ -23,6 +25,11 @@ public class PersonController {
     @PostMapping
     public Person savePerson(@RequestBody final Person person) {
         return repository.save(person);
+    }
+
+    @GetMapping
+    public List<Person> findAll() {
+        return repository.findAll();
     }
 
     @GetMapping("{id}")
